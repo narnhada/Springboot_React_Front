@@ -21,25 +21,33 @@ class Index extends React.Component {
       //       </TableHeaderColumn>
       //     </BootstrapTable>
       //   </div>
-
-      <table class="table table-horizontal table-bordered">
-        <thead class="thead-strong">
-          <button>
-            <Link to="/posts/save">글 등록</Link>
-          </button>
-          <tr>
-            <th>게시글번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>최종수정일</th>
-          </tr>
-        </thead>
-      </table>
+      <div>
+        <button>
+          <Link to="/posts/save">글 등록</Link>
+        </button>
+        <table className="table table-horizontal table-bordered">
+          <thead className="thead-strong">
+            <tr>
+              <th>게시글번호</th>
+              <th>제목</th>
+              <th>작성자</th>
+              <th>최종수정일</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <tr>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>4</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
 
 export default Index;
-
 
 // https://getbootstrap.com/docs/4.4/content/tables/
