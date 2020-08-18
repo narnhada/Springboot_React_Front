@@ -1,25 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Axios from "axios";
+import axios from "axios";
 
-function Index2() {
-  const [data, setData] = useState("");
-  const [date, setDate] = useState("");
+function Index() {
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetch = async () => {
-      const response = await Axios.get(`/api/v1/posts/9`);
+      const response = await axios.get(`/api/v1/posts`);
+
       setData(response.data);
-      // console.log(response.data);
-      setDate(response.headers.date);
-      // console.log(response);
     };
     fetch();
   }, []);
 
   return (
     <div>
-      <button>
+      <button style={{ margin: 10 }}>
         <Link to="/posts/save">글 등록</Link>
       </button>
       <table className="table table-horizontal table-bordered">
@@ -32,18 +29,20 @@ function Index2() {
           </tr>
         </thead>
         <tbody id="tbody">
-          <tr>
-            <td>{data.id}</td>
-            <td>
-              <Link to={`/posts/update/${data.id}`}>{data.title}</Link>
-            </td>
-            <td>{data.author}</td>
-            <td>{date}</td>
-          </tr>
+          {data.map((user) => (
+            <tr key={user.id}>
+              <td>{user.id}</td>
+              <td>
+                <Link to={`/posts/update/${user.id}`}>{user.title}</Link>
+              </td>
+              <td>{user.author}</td>
+              <td>{user.modifiedDate}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
   );
 }
 
-export default Index2;
+export default Index;
