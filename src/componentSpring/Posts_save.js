@@ -1,33 +1,20 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-function Posts_save() {
+function Posts_save({ history }) {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
 
-  const _Save = () => {
-    const post = {
-      title: title,
-      author: author,
-      content: content      
-    };
-
-    fetch("/api/v1/posts/", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(post),
-    })
-      .then((response) => response.text())
-      .then((message) => {
-        console.log(message);
-      });
-      alert("글이 등록되었습니다.");
-      window.location.href = '/';
-
-
+  const onPosts = async () => {
+    await axios.post(`/api/v1/posts`, {
+      title,
+      author,
+      content,
+    });
+    alert("글이 등록되었습니다.");
+    history.push("/");
   };
 
   return (
@@ -63,7 +50,7 @@ function Posts_save() {
       <button>
         <Link to="/">취소</Link>
       </button>
-      <button onClick={_Save}>등록</button>
+      <button onClick={onPosts}>등록</button>
     </div>
   );
 }

@@ -1,21 +1,18 @@
 import React from "react";
+import { Route } from "react-router-dom";
 
-import { HashRouter, Route } from "react-router-dom";
-import Index from "./componentSpring/Index";
-import Navigation from "./component/Navigation";
-import Home from "./component/Home";
+import Index2 from "./componentSpring/Index2";
 import Posts_save from "./componentSpring/Posts_save";
+import Posts_update from "./componentSpring/Posts_update";
 
 function App() {
   return (
-    <HashRouter>
-      <Navigation />
-      <Route path="/" exact={true} component={Home} />
-      <Route path="/index" component={Index} />
+    <>
+      <Route path="/" exact={true} component={Index2} />
       <Route path="/posts/save" component={Posts_save} />
-    </HashRouter>
+      <Route path="/posts/update/:id" component={Posts_update} />
+    </>
   );
 }
 
 export default App;
-
